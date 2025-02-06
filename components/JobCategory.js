@@ -17,7 +17,7 @@ const JobCategory = ({ category }) => {
 
 const styles = StyleSheet.create({
   categoryContainer: {
-    marginBottom: 20,
+    marginBottom: 5,
     paddingHorizontal: 16,
   },
   categoryTitle: {
