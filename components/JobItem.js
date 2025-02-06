@@ -1,25 +1,19 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
+import color from "../color/color";
 
 const JobItem = ({ job }) => {
   return (
     <View style={styles.jobContainer}>
-      {/* Logo công ty */}
-      <Image source={{ uri: job.logo }} style={styles.logo} />
-
-      {/* Nội dung công việc */}
-      <View style={styles.textContainer}>
-        <Text style={styles.jobTitle}>{job.title}</Text>
-        <Text style={styles.companyName}>
-          {job.company} - {job.location}
-        </Text>
+      <Image source={{uri: job.logo}} style={styles.logo}></Image>
+      <View>
+        <Text style={styles.title}>{job.title}</Text>
+        <Text style={styles.company}>{job.company} - {job.location}</Text>
         <Text style={styles.salary}>{job.salary}</Text>
-
-        {/* Danh sách thẻ tags */}
         <View style={styles.tagContainer}>
-          {job.tags.map((tag, index) => (
+          {job.tags.map((tag,index) => (
             <Text key={index} style={styles.tag}>
-              {tag}
+            {tag}
             </Text>
           ))}
         </View>
@@ -29,36 +23,47 @@ const JobItem = ({ job }) => {
 };
 
 const styles = StyleSheet.create({
-  jobContainer: {
-    flexDirection: "row",
-    backgroundColor: "#f8f9fa",
-    padding: 12,
-    marginBottom: 8,
-    borderRadius: 10,
-    alignItems: "center",
-  },
   logo: {
     width: 50,
     height: 50,
-    borderRadius: 25,
-    marginRight: 10,
+    resizeMode: "contain",
   },
-  textContainer: {
-    flex: 1,
+  jobContainer: {
+    backgroundColor: color.backgroundItemColor,
+    flexDirection: "row",
+    marginBottom: 10,
+    borderRadius: 10,
+    paddingLeft: 5,
+    paddingRight: 5,
+    alignItems: "center",
   },
-  jobTitle: { fontSize: 16, fontWeight: "bold" },
-  companyName: { fontSize: 14, color: "gray" },
-  salary: { fontSize: 14, fontWeight: "600", color: "green", marginTop: 5 },
-  tagContainer: { flexDirection: "row", marginTop: 5 },
+  title: {
+    fontWeight: "bold",
+    marginLeft: 5,
+    fontSize: 16
+  },
+  company: {
+    color: color.gray,
+    marginLeft: 5,
+    fontSize: 14
+  },
+  salary: {
+    marginLeft: 5,
+    color: color.green,
+    fontWeight: "bold",
+    fontSize: 14
+  },
+  tagContainer: {
+    flexDirection: "row"
+  },
   tag: {
-    backgroundColor: "#e0e0e0",
-    color: "#333",
-    fontSize: 12,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 6,
-    marginRight: 5,
-  },
-});
+    marginLeft: 5,
+    backgroundColor: color.backgroundTagItemColor,
+    margin: 5,
+    padding: 3,
+    borderRadius: 10,
+    fontSize: 14
+  }
+})
 
 export default JobItem;
